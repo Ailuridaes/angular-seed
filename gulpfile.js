@@ -6,9 +6,9 @@ var gulp = require('gulp'),
     inject = require('gulp-inject'),
     open = require('gulp-open');
 
-var jsSources = ['app/**/*.js'],
-    cssSources = ['app/**/*.css'],
-    htmlSources = ['app/*.html'];
+var jsSources = ['src/app/**/*.js'],
+    cssSources = ['src/styles/**/*.css'],
+    htmlSources = ['src/**/*.html'];
 
 gulp.task('watch', function() {
     gulp.watch(jsSources, ['js']);
@@ -16,14 +16,14 @@ gulp.task('watch', function() {
     gulp.watch(htmlSources, ['html']);
 });
 
-var paths = ['./app/bower_components/','./app/js/app.js','./app/js/**/*.js','./app/css/**/*.css'];
+var paths = ['./src/bower_components/','./src/app/**/*.js','./src/styles/**/*.css'];
 
 gulp.task('inject', function() {
     var sources = gulp.src(paths, {read: false});
-    return gulp.src('./app/index.html')
+    return gulp.src('./src/index.html')
         .pipe(wiredep())
         .pipe(inject(sources, { relative: true }))
-        .pipe(gulp.dest('./app'));
+        .pipe(gulp.dest('./src'));
 });
 
 gulp.task('js', function() {
