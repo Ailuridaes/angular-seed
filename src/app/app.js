@@ -3,8 +3,11 @@
 
     angular
         .module('app', ['ui.router'])
+        .config(appConfig);
 
-        .config(function($stateProvider, $urlRouterProvider){
+        appConfig.$inject = ["$urlRouterProvider", "$stateProvider"];
+
+        function appConfig($urlRouterProvider, $stateProvider) {
         	$urlRouterProvider.otherwise('/feature');
 
         	$stateProvider
